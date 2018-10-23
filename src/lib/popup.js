@@ -44,9 +44,8 @@ export function popupCenter(url, title, w, h) {
 export function waitForClosedPopup(popup, origin) {
   return new Promise((resolve, reject) => {
     var cb = function(messageEvent) {
+      console.log(messageEvent, 'messageEvent')
       if (!messageEvent.data) return // data shouldn't be empty
-      // if wrong connector oauth window
-      if (messageEvent.data.origin !== origin) return
       resolve(messageEvent.data.key)
     }
     window.addEventListener('message', cb)
